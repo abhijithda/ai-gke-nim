@@ -21,3 +21,11 @@ gcloud container clusters create ${CLUSTER_NAME} \
     --num-nodes=1
 
 
+echo "Creating GPU node pool...";
+gcloud container node-pools create gpupool \
+    --accelerator type=${GPU_TYPE},count=${GPU_COUNT},gpu-driver-version=latest \
+    --project=${PROJECT_ID} \
+    --location=${ZONE} \
+    --cluster=${CLUSTER_NAME} \
+    --machine-type=${NODE_POOL_MACHINE_TYPE} \
+    --num-nodes=1
